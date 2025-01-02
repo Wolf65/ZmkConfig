@@ -1,51 +1,64 @@
-# Copyright (c) 2020 Ryan Cross
-# SPDX-License-Identifier: MIT
-
+## -----------------------------------------------------------------
 if SHIELD_SOFLE_DONGLE
 
-# Max 16 characters in keyboard name
+config ZMK_USB
+    default y
+
 config ZMK_KEYBOARD_NAME
     default "Sofle"
 
 config ZMK_SPLIT_ROLE_CENTRAL
     default y
 
-config ZMK_USB
-    default y
-
-# Set this to the number of peripherals your dongle will have.
-# For a unibody, this would be 1. If you have left and right halves, set it to 2, etc.
 config ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS
-    default 3
-# Set this to ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS + your desired number of BT profiles (default is 5)
+    default 2
+
 config BT_MAX_CONN
-    default 6
+    default 2
 
-# Set this to the same number as BT_MAX_CONN
 config BT_MAX_PAIRED
-    default 6
-endif
-# Copyright (c) 2020 Ryan Cross
-# SPDX-License-Identifier: MIT
+    default 2
 
-if SHIELD_SOFLE_LEFT
-
-
-endif
-
-config ZMK_SPLIT
+config ZMK_STUDIO
     default y
 
-config ZMK_BLE
-    default y
+config ZMK_STUDIO_LOCKING
+    default n  
 
+config ZMK_SLEEP
+    default n
+    
+endif ## SHIELD_SOFLE_DONGLE
+## -----------------------------------------------------------------
 if SHIELD_SOFLE_LEFT || SHIELD_SOFLE_RIGHT
 
 config ZMK_SPLIT_ROLE_CENTRAL
     default n
 
+endif ## SHIELD_SOFLE_LEFT || SHIELD_SOFLE_RIGHT
+## -----------------------------------------------------------------
+if SHIELD_SOFLE_DONGLE || SHIELD_SOFLE_LEFT || SHIELD_SOFLE_RIGHT
+
+config ZMK_BLE
+    default y
+
 config ZMK_SPLIT
     default y
+
+config ZMK_SLEEP
+    default y
+
+config EC11
+    default y
+
+config EC11_TRIGGER_GLOBAL_THREAD
+    default y
+
+config BT_CTLR_TX_PWR_PLUS_8
+    default y
+## ------------------
+config ZMK_DISPLAY
+    default n
 
 if ZMK_DISPLAY
 
@@ -55,8 +68,8 @@ config I2C
 config SSD1306
     default y
 
-endif # ZMK_DISPLAY
-
+endif ## ZMK_DISPLAY
+## ------------------
 if LVGL
 
 config LV_Z_VDB_SIZE
@@ -67,17 +80,26 @@ config LV_DPI_DEF
 
 config LV_Z_BITS_PER_PIXEL
     default 1
-
+## -------
 choice LV_COLOR_DEPTH
     default LV_COLOR_DEPTH_1
-endchoice
 
-endif # LVGL
+endchoice
+## -------
+endif ## LVGL
+## ------------------
+config ZMK_RGB_UNDERGLOW
+    default n
+
+config ZMK_RGB_UNDERGLOW_EXT_POWER
+    default n
 
 if ZMK_RGB_UNDERGLOW
 
 config WS2812_STRIP
     default y
-endif
 
-endif
+endif ## ZMK_RGB_UNDERGLOW
+## ------------------
+endif ## SHIELD_SOFLE_DONGLE || SHIELD_SOFLE_LEFT || SHIELD_SOFLE_RIGHT
+## -----------------------------------------------------------------
