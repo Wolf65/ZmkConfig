@@ -32,6 +32,9 @@ endif ## SHIELD_SOFLE_DONGLE
 ## -----------------------------------------------------------------
 if SHIELD_SOFLE_LEFT || SHIELD_SOFLE_RIGHT
 
+config ZMK_USB
+    default n
+
 config ZMK_SPLIT_ROLE_CENTRAL
     default n
 
@@ -56,6 +59,7 @@ config EC11_TRIGGER_GLOBAL_THREAD
 
 config BT_CTLR_TX_PWR_PLUS_8
     default y
+    
 ## ------------------
 config ZMK_DISPLAY
     default n
