@@ -1,9 +1,6 @@
 ## -----------------------------------------------------------------
 if SHIELD_SOFLE_DONGLE
 
-config ZMK_USB
-    default y
-
 config ZMK_KEYBOARD_NAME
     default "Sofle"
 
@@ -32,9 +29,6 @@ endif ## SHIELD_SOFLE_DONGLE
 ## -----------------------------------------------------------------
 if SHIELD_SOFLE_LEFT || SHIELD_SOFLE_RIGHT
 
-config ZMK_USB
-    default n
-
 config ZMK_SPLIT_ROLE_CENTRAL
     default n
 
@@ -49,15 +43,6 @@ config ZMK_SPLIT
     default y
 
 config ZMK_SLEEP
-    default y
-
-config EC11
-    default y
-
-config EC11_TRIGGER_GLOBAL_THREAD
-    default y
-
-config BT_CTLR_TX_PWR_PLUS_8
     default y
     
 ## ------------------
